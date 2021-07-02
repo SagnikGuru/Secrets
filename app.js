@@ -1,6 +1,5 @@
 //jshint esversion:6
 require("dotenv").config();
-const port = 3000;
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -10,6 +9,7 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require("mongoose-findorcreate");
+const PORT = process.env.PORT || 5000;
 
 
 const app = express();
@@ -168,6 +168,6 @@ app.post("/submit",function(req,res){
   });
 });
 
-app.listen(port, function() {
+app.listen(PORT, function() {
   console.log(`Server started on port ${port}`);
 });
