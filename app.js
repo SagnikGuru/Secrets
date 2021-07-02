@@ -168,22 +168,6 @@ app.post("/submit",function(req,res){
   });
 });
 
-.get('/times', (req, res) => res.send(showTimes()));
-
-showTimes = () => {
-  let result = '';
-  const times = process.env.TIMES || 5;
-  for (i = 0; i < times; i++) {
-    result += i + ' ';
-  }
-  return result;
-}
-
-
-
-
-
-
 app.listen(PORT, function() {
   console.log(`Server started on port ${port}`);
 });
