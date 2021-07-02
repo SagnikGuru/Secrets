@@ -9,7 +9,7 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require("mongoose-findorcreate");
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 
 const app = express();
@@ -65,7 +65,6 @@ passport.use(new GoogleStrategy({
     userProfileURL:"https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function(accessToken, refreshToken, profile, cb) {
-    console.log(profile);
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return cb(err, user);
     });
@@ -169,5 +168,5 @@ app.post("/submit",function(req,res){
 });
 
 app.listen(PORT, function() {
-  console.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${PORT}`);
 });
