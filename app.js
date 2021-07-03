@@ -58,10 +58,18 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+let absoluteURI="";
+if(PORT==3000){
+  absoluteURI="http://localhost:3000";
+}
+else{
+  absoluteURI="https://stark-savannah-74935.herokuapp.com";
+}
+
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/secrets",
+    callbackURL: absoluteURI + "/auth/google/secrets",
     userProfileURL:"https://www.googleapis.com/oauth2/v3/userinfo"
   },
   function(accessToken, refreshToken, profile, cb) {
